@@ -1,25 +1,34 @@
-@Service
-public class DonationService {
-
-  private final DonationRepository donationRepository;
-
-  public DonationService(DonationRepository donationRepository) {
-    this.donationRepository = donationRepository;
+public class DonationServiceImpl implements DonationService {
+  private DonationRepository donationRepository;
+  
+  // Constructor
+  public DonationServiceImpl(DonationRepository donationRepository) {
+      this.donationRepository = donationRepository;
+  }
+  
+  @Override
+  public Donation findById(Long id) {
+      return donationRepository.findById(id);
   }
 
+  @Override
   public List<Donation> findAll() {
-    return donationRepository.findAll();
+      return donationRepository.findAll();
   }
 
-  public Optional<Donation> findById(Long id) {
-    return donationRepository.findById(id);
+  @Override
+  public void save(Donation donation) {
+      donationRepository.save(donation);
   }
 
-  public Donation save(Donation donation) {
-    return donationRepository.save(donation);
+  @Override
+  public void update(Donation donation) {
+      donationRepository.update(donation);
   }
 
+  @Override
   public void deleteById(Long id) {
-    donationRepository.deleteById(id);
+      donationRepository.deleteById(id);
   }
 }
+
